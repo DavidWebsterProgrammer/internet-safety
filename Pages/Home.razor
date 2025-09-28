@@ -1,0 +1,120 @@
+﻿@page "/"
+
+<PageTitle>Internet Safety</PageTitle>
+
+<div class="hero-section">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1 class="hero-title">
+                <span class="gradient-text">Internet Safety</span>
+            </h1>
+            <p class="hero-subtitle">Master the Internet with Safety</p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid course-container">
+    <div class="row">
+        <div class="col-12">
+            @foreach (var lesson in courseData)
+            {
+                @if (lesson.IsSectionHeading)
+                {
+                    <div class="section-heading mt-4">
+                        <h2 class="section-title">@lesson.ModuleNumber. @lesson.Name</h2>
+                    </div>
+                }
+                else
+                {
+                    <div class="lesson-item">
+                        <a href="@lesson.Url" class="lesson-card" target="_blank">
+                            <div class="lesson-content">
+                                <div class="lesson-text">
+                                    <h3 class="lesson-title"><strong>@lesson.ModuleNumber.@lesson.LessonNumber</strong> @lesson.Name</h3>
+                                </div>
+                                <div class="lesson-arrow">
+                                    <i class="bi bi-arrow-right"></i>
+                                </div>
+                            </div>
+                            <div class="lesson-hover-effect"></div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    public class LessonItem
+    {
+        public string Name { get; set; } = "";
+        public string Url { get; set; } = "";
+        public bool IsSectionHeading { get; set; }
+        public int ModuleNumber { get; set; }
+        public int LessonNumber { get; set; }
+    }
+
+    private void ProcessCourseData()
+    {
+        int moduleNumber = 0;
+        int lessonNumber = 0;
+
+        foreach (var lesson in courseData)
+        {
+            if (lesson.IsSectionHeading)
+            {
+                moduleNumber++;
+                lesson.ModuleNumber = moduleNumber;
+                lessonNumber = 0; // Reset lesson counter for new module
+            }
+            else
+            {
+                lessonNumber++;
+                lesson.ModuleNumber = moduleNumber;
+                lesson.LessonNumber = lessonNumber;
+            }
+        }
+    }
+
+    private List<LessonItem> courseData = new List<LessonItem>
+    {
+        new LessonItem { Name = "Introduction", IsSectionHeading = true },
+        new LessonItem { Name = "You Are Not Alone", Url = "YouAreNotAlone/index.html" },
+        new LessonItem { Name = "Safely Surfing the Internet", Url = "SafelySurfingtheInternet/index.html" },
+        new LessonItem { Name = "Email Safety Guidelines", Url = "EmailSafetyGuidelines/index.html" },
+        new LessonItem { Name = "Social Media and Online Accounts", IsSectionHeading = true },
+        new LessonItem { Name = "Social Media Safeguards", Url = "SocialMediaSafeguards/index.html" },
+        new LessonItem { Name = "Password Management", Url = "PasswordManagement/index.html" },
+        new LessonItem { Name = "User Names", Url = "UserNames/index.html" },
+        new LessonItem { Name = "Safer Browsing and Apps", IsSectionHeading = true },
+        new LessonItem { Name = "Online Purchases", Url = "OnlinePurchases/index.html" },
+        new LessonItem { Name = "Apps and Privacy", Url = "AppsandPrivacy/index.html" },
+        new LessonItem { Name = "Anonymous Apps", Url = "AnonymousApps/index.html" },
+        new LessonItem { Name = "Browser Safety", Url = "BrowserSafety/index.html" },
+        new LessonItem { Name = "Online Dangers", IsSectionHeading = true },
+        new LessonItem { Name = "Illegal Downloads", Url = "IllegalDownloads/index.html" },
+        new LessonItem { Name = "Sexting and Snapchat", Url = "SextingandSnapchat/index.html" },
+        new LessonItem { Name = "Cyber Bullying", Url = "CyberBullying/index.html" },
+        new LessonItem { Name = "Trolling", Url = "Trolling/index.html" },
+        new LessonItem { Name = "Doxxing", Url = "Doxxing/index.html" },
+        new LessonItem { Name = "Online Gambling", Url = "OnlineGambling/index.html" },
+        new LessonItem { Name = "Online Dating", Url = "OnlineDating/index.html" },
+        new LessonItem { Name = "Advanced", IsSectionHeading = true },
+        new LessonItem { Name = "Parental Controls for the Internet", Url = "ParentalControlsfortheInternet/index.html" },
+        new LessonItem { Name = "Routers and Security", Url = "RoutersandSecurity/index.html" },
+        new LessonItem { Name = "Firewalls", Url = "Firewalls/index.html" },
+        new LessonItem { Name = "Assessments", IsSectionHeading = true },
+        new LessonItem { Name = "Internet Safety Assessment 1", Url = "InternetSafetyAssessment1/index.html" },
+        new LessonItem { Name = "Internet Safety Assessment 2", Url = "InternetSafetyAssessment2/index.html" },
+        new LessonItem { Name = "Internet Safety Assessment 3", Url = "InternetSafetyAssessment3/index.html" },
+        new LessonItem { Name = "Internet Safety Assessment 4", Url = "InternetSafetyAssessment4/index.html" },
+        new LessonItem { Name = "Internet Safety Assessment 5", Url = "InternetSafetyAssessment5/index.html" },
+        new LessonItem { Name = "Internet Safety Assessment 6", Url = "InternetSafetyAssessment6/index.html" }
+    };
+
+    protected override void OnInitialized()
+    {
+        ProcessCourseData();
+    }
+}

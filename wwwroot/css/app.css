@@ -1,5 +1,6 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background:#667eea  0%;
 }
 
 h1:focus {
@@ -8,7 +9,6 @@ h1:focus {
 #app {
     display: flex;
     justify-content: center;
-    background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 a, .btn-link {
     color: #ffffff;
@@ -91,7 +91,7 @@ a, .btn-link {
     }
 
         .loading-progress circle:last-child {
-            stroke: #b3b5b8;
+            stroke: lightblue;
             stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
             transition: stroke-dasharray 0.05s ease-in-out;
         }
@@ -101,6 +101,7 @@ a, .btn-link {
     text-align: center;
     font-weight: bold;
     inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+    color: white;
 }
 
     .loading-progress-text:after {
